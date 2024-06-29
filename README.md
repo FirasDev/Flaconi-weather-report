@@ -45,3 +45,9 @@ To run code generation
 ```sh
 $ dart run build_runner build -d
 ```
+
+## Api Configuration
+To run the api add a .env file in root with 1 parameter
+```
+OPEN_WEATHER_MAP_ID=API_KEY_HERE
+```

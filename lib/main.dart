@@ -1,8 +1,12 @@
+import 'package:flaconi_weather_report/app/dependency/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flaconi_weather_report/app/weather_theme_data.dart';
 import 'package:flaconi_weather_report/app/router/router.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await configureDependencies();
+  await dotenv.load();
   runApp(const MyApp());
 }
 
