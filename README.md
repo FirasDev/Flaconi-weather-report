@@ -8,7 +8,7 @@ Develop a Flutter application that displays weather information for a given city
 the REST API https://openweathermap.org/api
 
 
-## Intro
+## Acceptance Criteria
 
 ● It’s done when loading indicator is displayed when fetching the data
 
@@ -24,8 +24,24 @@ current temperature, humidity, pressure, and wind.
 
 ● It’s done when an error screen with a retry button is shown when fetching the data fails. 
 
-## Intro
+## Extra points
 
 ● Supporting horizontal and vertical layouts, 
 ● Changing the temperature’s unit (C/F).
 
+## App Structure
+
+```
+├── app
+├── features
+│   ├── weather
+│   └── ...
+```
+
+## Running Code Generation
+
+To run code generation
+
+```sh
+$ dart run build_runner build -d
+```
