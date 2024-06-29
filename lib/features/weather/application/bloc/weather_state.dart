@@ -11,5 +11,6 @@ abstract class WeatherState with _$WeatherState {
   const factory WeatherState({
     @Default(WeatherStateStatus.loading) WeatherStateStatus status,
     @Default([]) List<Weather> currentWeather,
+    @Default('') String currentCity,
   }) = _WeatherState;
 }

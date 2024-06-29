@@ -233,6 +233,7 @@ abstract class _LoadCurrentWeahter implements WeatherEvent {
 mixin _$WeatherState {
   WeatherStateStatus get status => throw _privateConstructorUsedError;
   List<Weather> get currentWeather => throw _privateConstructorUsedError;
+  String get currentCity => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherStateCopyWith<WeatherState> get copyWith =>
@@ -245,7 +246,10 @@ abstract class $WeatherStateCopyWith<$Res> {
           WeatherState value, $Res Function(WeatherState) then) =
       _$WeatherStateCopyWithImpl<$Res, WeatherState>;
   @useResult
-  $Res call({WeatherStateStatus status, List<Weather> currentWeather});
+  $Res call(
+      {WeatherStateStatus status,
+      List<Weather> currentWeather,
+      String currentCity});
 }
 
 /// @nodoc
@@ -263,6 +267,7 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
   $Res call({
     Object? status = null,
     Object? currentWeather = null,
+    Object? currentCity = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -273,6 +278,10 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
           ? _value.currentWeather
           : currentWeather // ignore: cast_nullable_to_non_nullable
               as List<Weather>,
+      currentCity: null == currentCity
+          ? _value.currentCity
+          : currentCity // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -285,7 +294,10 @@ abstract class _$$WeatherStateImplCopyWith<$Res>
       __$$WeatherStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({WeatherStateStatus status, List<Weather> currentWeather});
+  $Res call(
+      {WeatherStateStatus status,
+      List<Weather> currentWeather,
+      String currentCity});
 }
 
 /// @nodoc
@@ -301,6 +313,7 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? currentWeather = null,
+    Object? currentCity = null,
   }) {
     return _then(_$WeatherStateImpl(
       status: null == status
@@ -311,6 +324,10 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
           ? _value._currentWeather
           : currentWeather // ignore: cast_nullable_to_non_nullable
               as List<Weather>,
+      currentCity: null == currentCity
+          ? _value.currentCity
+          : currentCity // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -320,7 +337,8 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
 class _$WeatherStateImpl implements _WeatherState {
   const _$WeatherStateImpl(
       {this.status = WeatherStateStatus.loading,
-      final List<Weather> currentWeather = const []})
+      final List<Weather> currentWeather = const [],
+      this.currentCity = ''})
       : _currentWeather = currentWeather;
 
   @override
@@ -336,8 +354,12 @@ class _$WeatherStateImpl implements _WeatherState {
   }
 
   @override
+  @JsonKey()
+  final String currentCity;
+
+  @override
   String toString() {
-    return 'WeatherState(status: $status, currentWeather: $currentWeather)';
+    return 'WeatherState(status: $status, currentWeather: $currentWeather, currentCity: $currentCity)';
   }
 
   @override
@@ -347,12 +369,14 @@ class _$WeatherStateImpl implements _WeatherState {
             other is _$WeatherStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
-                .equals(other._currentWeather, _currentWeather));
+                .equals(other._currentWeather, _currentWeather) &&
+            (identical(other.currentCity, currentCity) ||
+                other.currentCity == currentCity));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_currentWeather));
+      const DeepCollectionEquality().hash(_currentWeather), currentCity);
 
   @JsonKey(ignore: true)
   @override
@@ -364,12 +388,15 @@ class _$WeatherStateImpl implements _WeatherState {
 abstract class _WeatherState implements WeatherState {
   const factory _WeatherState(
       {final WeatherStateStatus status,
-      final List<Weather> currentWeather}) = _$WeatherStateImpl;
+      final List<Weather> currentWeather,
+      final String currentCity}) = _$WeatherStateImpl;
 
   @override
   WeatherStateStatus get status;
   @override
   List<Weather> get currentWeather;
+  @override
+  String get currentCity;
   @override
   @JsonKey(ignore: true)
   _$$WeatherStateImplCopyWith<_$WeatherStateImpl> get copyWith =>

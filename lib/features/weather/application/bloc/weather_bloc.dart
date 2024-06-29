@@ -36,6 +36,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
             ),
         (success) => emit(state.copyWith(
               currentWeather: success,
+              currentCity: city,
               status: WeatherStateStatus.loaded,
             )));
   }

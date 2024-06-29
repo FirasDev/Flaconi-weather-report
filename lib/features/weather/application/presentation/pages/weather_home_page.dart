@@ -32,7 +32,8 @@ class WeatherHomePage extends StatelessWidget {
           child: BlocBuilder<WeatherBloc, WeatherState>(
             buildWhen: (previous, current) =>
                 previous.currentWeather != current.currentWeather ||
-                previous.status != current.status,
+                previous.status != current.status ||
+                previous.currentCity != current.currentCity,
             builder: (context, state) {
               return switch (state.status) {
                 WeatherStateStatus.loading => const LoadingIndicator(),
@@ -42,7 +43,7 @@ class WeatherHomePage extends StatelessWidget {
                             currentWeather: []));
                   }),
                 WeatherStateStatus.loaded =>
-                  const Center(child: Text('data loaded successfully')),
+                  Center(child: Text('current city : ${state.currentCity}')),
               };
             },
           ),
