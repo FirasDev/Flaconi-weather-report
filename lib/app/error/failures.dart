@@ -14,3 +14,5 @@ class NoDataFoundFailure extends Failure {
 }
 
 class NoInternetFailure extends Failure {}
+
+class NoGpsFailure extends Failure {}

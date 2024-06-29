@@ -37,11 +37,15 @@ class WeatherHomePage extends StatelessWidget {
             builder: (context, state) {
               return switch (state.status) {
                 WeatherStateStatus.loading => const LoadingIndicator(),
-                WeatherStateStatus.error => ErrorScreen(onTryAgainPressed: () {
-                    context.read<WeatherBloc>().add(
-                        const WeatherEvent.loadCurrentWeather(
-                            currentWeather: []));
-                  }),
+                WeatherStateStatus.error => ErrorScreen(
+                    onTryAgainPressed: () {
+                      context.read<WeatherBloc>().add(
+                            const WeatherEvent.loadCurrentWeather(
+                              currentWeather: [],
+                            ),
+                          );
+                    },
+                  ),
                 WeatherStateStatus.loaded =>
                   Center(child: Text('current city : ${state.currentCity}')),
               };
