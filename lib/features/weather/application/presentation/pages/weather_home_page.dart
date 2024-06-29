@@ -1,9 +1,9 @@
 import 'package:flaconi_weather_report/app/components/error_screen.dart';
 import 'package:flaconi_weather_report/app/components/loading_indicator.dart';
 import 'package:flaconi_weather_report/app/dependency/injection.dart';
-import 'package:flaconi_weather_report/app/weather_theme_data.dart';
+import 'package:flaconi_weather_report/app/theme/weather_theme_data.dart';
 import 'package:flaconi_weather_report/features/weather/application/bloc/weather_bloc.dart';
-import 'package:flaconi_weather_report/features/weather/application/presentation/widgets/Weather_widget.dart';
+import 'package:flaconi_weather_report/features/weather/application/presentation/widgets/weather_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

@@ -1,7 +1,7 @@
 import 'package:flaconi_weather_report/app/components/error_text.dart';
 import 'package:flaconi_weather_report/app/theme/token/flaconi_colors.dart';
-import 'package:flaconi_weather_report/app/theme/token/flaconi_spacing.dart';
-import 'package:flaconi_weather_report/app/theme/token/flaconi_strings.dart';
+import 'package:flaconi_weather_report/app/theme/flaconi_spacing.dart';
+import 'package:flaconi_weather_report/app/theme/flaconi_strings.dart';
 import 'package:flaconi_weather_report/app/utils/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 

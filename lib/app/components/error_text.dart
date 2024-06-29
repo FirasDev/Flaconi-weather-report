@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flaconi_weather_report/app/theme/token/flaconi_strings.dart';
+import 'package:flaconi_weather_report/app/theme/flaconi_strings.dart';
 import 'package:flaconi_weather_report/app/utils/extension/context_extension.dart';
 
 class ErrorText extends StatelessWidget {
