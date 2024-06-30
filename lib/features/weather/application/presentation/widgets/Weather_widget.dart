@@ -1,5 +1,6 @@
 import 'package:flaconi_weather_report/app/theme/flaconi_spacing.dart';
 import 'package:flaconi_weather_report/app/theme/flaconi_typography.dart';
+import 'package:flaconi_weather_report/app/utils/extension/string_extension.dart';
 import 'package:flaconi_weather_report/features/weather/application/bloc/weather_bloc.dart';
 import 'package:flaconi_weather_report/features/weather/domain/entity/unit.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +50,8 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   Widget build(BuildContext context) {
     String tempUnit = _isImperial ? 'F' : 'C';
     String speedUnit = _isImperial ? 'mph' : 'km/h';
-    final humidityUnit = '%';
-    final pressureUnit = 'hPa';
+    const humidityUnit = '%';
+    const pressureUnit = 'hPa';
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(FlaconiSpacing.s16),
@@ -67,7 +68,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                widget.weather.weather[0].description,
+                widget.weather.weather[0].description.capitalize(),
                 style: context.typo.h2MediumSemiBold.white,
               ),
             ),
