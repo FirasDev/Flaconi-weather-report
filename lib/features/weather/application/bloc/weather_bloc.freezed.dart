@@ -20,18 +20,21 @@ mixin _$WeatherEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(List<Weather> currentWeather) loadCurrentWeather,
     required TResult Function(TempUnit unit) updateDefaultTempUnit,
+    required TResult Function() refreshData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Weather> currentWeather)? loadCurrentWeather,
     TResult? Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult? Function()? refreshData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Weather> currentWeather)? loadCurrentWeather,
     TResult Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult Function()? refreshData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,18 +43,21 @@ mixin _$WeatherEvent {
     required TResult Function(_LoadCurrentWeahter value) loadCurrentWeather,
     required TResult Function(_UpdateDefaultTempUnit value)
         updateDefaultTempUnit,
+    required TResult Function(_RefreshData value) refreshData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadCurrentWeahter value)? loadCurrentWeather,
     TResult? Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult? Function(_RefreshData value)? refreshData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadCurrentWeahter value)? loadCurrentWeather,
     TResult Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult Function(_RefreshData value)? refreshData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +156,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   TResult when<TResult extends Object?>({
     required TResult Function(List<Weather> currentWeather) loadCurrentWeather,
     required TResult Function(TempUnit unit) updateDefaultTempUnit,
+    required TResult Function() refreshData,
   }) {
     return loadCurrentWeather(currentWeather);
   }
@@ -159,6 +166,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Weather> currentWeather)? loadCurrentWeather,
     TResult? Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult? Function()? refreshData,
   }) {
     return loadCurrentWeather?.call(currentWeather);
   }
@@ -168,6 +176,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Weather> currentWeather)? loadCurrentWeather,
     TResult Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult Function()? refreshData,
     required TResult orElse(),
   }) {
     if (loadCurrentWeather != null) {
@@ -182,6 +191,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
     required TResult Function(_LoadCurrentWeahter value) loadCurrentWeather,
     required TResult Function(_UpdateDefaultTempUnit value)
         updateDefaultTempUnit,
+    required TResult Function(_RefreshData value) refreshData,
   }) {
     return loadCurrentWeather(this);
   }
@@ -191,6 +201,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadCurrentWeahter value)? loadCurrentWeather,
     TResult? Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult? Function(_RefreshData value)? refreshData,
   }) {
     return loadCurrentWeather?.call(this);
   }
@@ -200,6 +211,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadCurrentWeahter value)? loadCurrentWeather,
     TResult Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult Function(_RefreshData value)? refreshData,
     required TResult orElse(),
   }) {
     if (loadCurrentWeather != null) {
@@ -287,6 +299,7 @@ class _$UpdateDefaultTempUnitImpl implements _UpdateDefaultTempUnit {
   TResult when<TResult extends Object?>({
     required TResult Function(List<Weather> currentWeather) loadCurrentWeather,
     required TResult Function(TempUnit unit) updateDefaultTempUnit,
+    required TResult Function() refreshData,
   }) {
     return updateDefaultTempUnit(unit);
   }
@@ -296,6 +309,7 @@ class _$UpdateDefaultTempUnitImpl implements _UpdateDefaultTempUnit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Weather> currentWeather)? loadCurrentWeather,
     TResult? Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult? Function()? refreshData,
   }) {
     return updateDefaultTempUnit?.call(unit);
   }
@@ -305,6 +319,7 @@ class _$UpdateDefaultTempUnitImpl implements _UpdateDefaultTempUnit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Weather> currentWeather)? loadCurrentWeather,
     TResult Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult Function()? refreshData,
     required TResult orElse(),
   }) {
     if (updateDefaultTempUnit != null) {
@@ -319,6 +334,7 @@ class _$UpdateDefaultTempUnitImpl implements _UpdateDefaultTempUnit {
     required TResult Function(_LoadCurrentWeahter value) loadCurrentWeather,
     required TResult Function(_UpdateDefaultTempUnit value)
         updateDefaultTempUnit,
+    required TResult Function(_RefreshData value) refreshData,
   }) {
     return updateDefaultTempUnit(this);
   }
@@ -328,6 +344,7 @@ class _$UpdateDefaultTempUnitImpl implements _UpdateDefaultTempUnit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadCurrentWeahter value)? loadCurrentWeather,
     TResult? Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult? Function(_RefreshData value)? refreshData,
   }) {
     return updateDefaultTempUnit?.call(this);
   }
@@ -337,6 +354,7 @@ class _$UpdateDefaultTempUnitImpl implements _UpdateDefaultTempUnit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadCurrentWeahter value)? loadCurrentWeather,
     TResult Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult Function(_RefreshData value)? refreshData,
     required TResult orElse(),
   }) {
     if (updateDefaultTempUnit != null) {
@@ -354,6 +372,115 @@ abstract class _UpdateDefaultTempUnit implements WeatherEvent {
   @JsonKey(ignore: true)
   _$$UpdateDefaultTempUnitImplCopyWith<_$UpdateDefaultTempUnitImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RefreshDataImplCopyWith<$Res> {
+  factory _$$RefreshDataImplCopyWith(
+          _$RefreshDataImpl value, $Res Function(_$RefreshDataImpl) then) =
+      __$$RefreshDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshDataImplCopyWithImpl<$Res>
+    extends _$WeatherEventCopyWithImpl<$Res, _$RefreshDataImpl>
+    implements _$$RefreshDataImplCopyWith<$Res> {
+  __$$RefreshDataImplCopyWithImpl(
+      _$RefreshDataImpl _value, $Res Function(_$RefreshDataImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RefreshDataImpl implements _RefreshData {
+  const _$RefreshDataImpl();
+
+  @override
+  String toString() {
+    return 'WeatherEvent.refreshData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RefreshDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Weather> currentWeather) loadCurrentWeather,
+    required TResult Function(TempUnit unit) updateDefaultTempUnit,
+    required TResult Function() refreshData,
+  }) {
+    return refreshData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult? Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult? Function()? refreshData,
+  }) {
+    return refreshData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult Function(TempUnit unit)? updateDefaultTempUnit,
+    TResult Function()? refreshData,
+    required TResult orElse(),
+  }) {
+    if (refreshData != null) {
+      return refreshData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadCurrentWeahter value) loadCurrentWeather,
+    required TResult Function(_UpdateDefaultTempUnit value)
+        updateDefaultTempUnit,
+    required TResult Function(_RefreshData value) refreshData,
+  }) {
+    return refreshData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult? Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult? Function(_RefreshData value)? refreshData,
+  }) {
+    return refreshData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    TResult Function(_RefreshData value)? refreshData,
+    required TResult orElse(),
+  }) {
+    if (refreshData != null) {
+      return refreshData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshData implements WeatherEvent {
+  const factory _RefreshData() = _$RefreshDataImpl;
 }
 
 /// @nodoc

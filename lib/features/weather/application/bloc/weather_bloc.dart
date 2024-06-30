@@ -31,6 +31,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         ) {
     on<_LoadCurrentWeahter>(_onLoadCurrentWeather);
     on<_UpdateDefaultTempUnit>(_onUpdateDefaultTempUnit);
+    on<_RefreshData>(_onRefreshData);
   }
 
   final WeatherRepository weatherRepository;
@@ -116,6 +117,18 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       event.unit.code,
       StorageKey.temperatureUnit,
     );
+    add(
+      WeatherEvent.loadCurrentWeather(currentWeather: state.currentWeather),
+    );
+  }
+
+  FutureOr<void> _onRefreshData(
+    _RefreshData event,
+    Emitter<WeatherState> emit,
+  ) {
+    emit(state.copyWith(
+      status: WeatherStateStatus.loading,
+    ));
     add(
       WeatherEvent.loadCurrentWeather(currentWeather: state.currentWeather),
     );
