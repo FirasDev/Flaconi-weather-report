@@ -72,7 +72,8 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                     ? MediaQuery.of(context).size.height
                     : MediaQuery.of(context).size.width,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: FlaconiSpacing.s12),
+                  padding: const EdgeInsets.only(
+                      left: FlaconiSpacing.s12, top: FlaconiSpacing.s12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

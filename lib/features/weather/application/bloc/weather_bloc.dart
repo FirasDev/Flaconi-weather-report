@@ -50,62 +50,70 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     emit(state.copyWith(
       tempUnit: tempUnit,
     ));
-    final cityResult = await getCurrentCityUsecase();
-    await cityResult.fold(
-      (failure) async {
-        emit(state.copyWith(
-          status: WeatherStateStatus.error,
-        ));
-      },
-      (city) async {
-        //get current weather
-        final currentWeatherResult =
-            await currentWeatherUsecase(city, tempUnit);
-        await currentWeatherResult.fold(
-          (failure) async {
-            emit(state.copyWith(
-              status: WeatherStateStatus.error,
-            ));
-          },
-          (success) async {
-            emit(state.copyWith(
-              currentWeather: success,
-              currentCity: city,
-              status: WeatherStateStatus.loaded,
-            ));
-          },
-        );
+    if (event.currentWeather.isNotEmpty) {
+      emit(state.copyWith(
+        currentWeather: event.currentWeather,
+        status: WeatherStateStatus.loaded,
+      ));
+    } else {
+      final cityResult = await getCurrentCityUsecase();
+      await cityResult.fold(
+        (failure) async {
+          emit(state.copyWith(
+            status: WeatherStateStatus.error,
+          ));
+        },
+        (city) async {
+          //get current weather
+          final currentWeatherResult =
+              await currentWeatherUsecase(city, tempUnit);
+          await currentWeatherResult.fold(
+            (failure) async {
+              emit(state.copyWith(
+                status: WeatherStateStatus.error,
+              ));
+            },
+            (success) async {
+              emit(state.copyWith(
+                currentWeather: success,
+                currentCity: city,
+                status: WeatherStateStatus.loaded,
+              ));
+            },
+          );
 
-        // get forecast
-        final forecastResult = await weatherForecastUsecase(city, tempUnit);
-        await forecastResult.fold(
-          (failure) async {
-            emit(state.copyWith(
-              status: WeatherStateStatus.error,
-            ));
-          },
-          (success) async {
-            final List<Weather> filteredList = [];
-            final now = DateTime.now();
-            var i = 0;
-            var day = '';
-            while (i < success.length) {
-              if (day != success[i].dt.timestampToDateTime().dayName &&
-                  now.dayName != success[i].dt.timestampToDateTime().dayName) {
-                day = success[i].dt.timestampToDateTime().dayName;
-                filteredList.add(success[i]);
-                i++;
-              } else {
-                i++;
+          // get forecast
+          final forecastResult = await weatherForecastUsecase(city, tempUnit);
+          await forecastResult.fold(
+            (failure) async {
+              emit(state.copyWith(
+                status: WeatherStateStatus.error,
+              ));
+            },
+            (success) async {
+              final List<Weather> filteredList = [];
+              final now = DateTime.now();
+              var i = 0;
+              var day = '';
+              while (i < success.length) {
+                if (day != success[i].dt.timestampToDateTime().dayName &&
+                    now.dayName !=
+                        success[i].dt.timestampToDateTime().dayName) {
+                  day = success[i].dt.timestampToDateTime().dayName;
+                  filteredList.add(success[i]);
+                  i++;
+                } else {
+                  i++;
+                }
               }
-            }
-            emit(state.copyWith(
-              forecast: filteredList,
-            ));
-          },
-        );
-      },
-    );
+              emit(state.copyWith(
+                forecast: filteredList,
+              ));
+            },
+          );
+        },
+      );
+    }
   }
 
   FutureOr<void> _onUpdateDefaultTempUnit(
@@ -120,7 +128,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       StorageKey.temperatureUnit,
     );
     add(
-      WeatherEvent.loadCurrentWeather(currentWeather: state.currentWeather),
+      const WeatherEvent.loadCurrentWeather(currentWeather: []),
     );
   }
 
@@ -132,7 +140,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       status: WeatherStateStatus.loading,
     ));
     add(
-      WeatherEvent.loadCurrentWeather(currentWeather: state.currentWeather),
+      const WeatherEvent.loadCurrentWeather(currentWeather: []),
     );
   }
 }

@@ -2,8 +2,10 @@ import 'package:flaconi_weather_report/app/components/forecast_card.dart';
 import 'package:flaconi_weather_report/app/theme/flaconi_spacing.dart';
 import 'package:flaconi_weather_report/app/utils/extension/datetime_extension.dart';
 import 'package:flaconi_weather_report/app/utils/extension/int_extension.dart';
+import 'package:flaconi_weather_report/features/weather/application/bloc/weather_bloc.dart';
 import 'package:flaconi_weather_report/features/weather/domain/entity/weather.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ForecastItem extends StatelessWidget {
   final Weather weather;
@@ -27,7 +29,10 @@ class ForecastItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              context.read<WeatherBloc>().add(
+                  WeatherEvent.loadCurrentWeather(currentWeather: [weather]));
+            },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(FlaconiSpacing.s8),
               child: ForecastCard(
