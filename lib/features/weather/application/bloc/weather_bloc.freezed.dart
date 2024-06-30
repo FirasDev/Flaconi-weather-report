@@ -362,6 +362,7 @@ mixin _$WeatherState {
   List<Weather> get currentWeather => throw _privateConstructorUsedError;
   String get currentCity => throw _privateConstructorUsedError;
   TempUnit get tempUnit => throw _privateConstructorUsedError;
+  List<Weather> get forecast => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherStateCopyWith<WeatherState> get copyWith =>
@@ -378,7 +379,8 @@ abstract class $WeatherStateCopyWith<$Res> {
       {WeatherStateStatus status,
       List<Weather> currentWeather,
       String currentCity,
-      TempUnit tempUnit});
+      TempUnit tempUnit,
+      List<Weather> forecast});
 }
 
 /// @nodoc
@@ -398,6 +400,7 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
     Object? currentWeather = null,
     Object? currentCity = null,
     Object? tempUnit = null,
+    Object? forecast = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -416,6 +419,10 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
           ? _value.tempUnit
           : tempUnit // ignore: cast_nullable_to_non_nullable
               as TempUnit,
+      forecast: null == forecast
+          ? _value.forecast
+          : forecast // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
     ) as $Val);
   }
 }
@@ -432,7 +439,8 @@ abstract class _$$WeatherStateImplCopyWith<$Res>
       {WeatherStateStatus status,
       List<Weather> currentWeather,
       String currentCity,
-      TempUnit tempUnit});
+      TempUnit tempUnit,
+      List<Weather> forecast});
 }
 
 /// @nodoc
@@ -450,6 +458,7 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
     Object? currentWeather = null,
     Object? currentCity = null,
     Object? tempUnit = null,
+    Object? forecast = null,
   }) {
     return _then(_$WeatherStateImpl(
       status: null == status
@@ -468,6 +477,10 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
           ? _value.tempUnit
           : tempUnit // ignore: cast_nullable_to_non_nullable
               as TempUnit,
+      forecast: null == forecast
+          ? _value._forecast
+          : forecast // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
     ));
   }
 }
@@ -479,8 +492,10 @@ class _$WeatherStateImpl implements _WeatherState {
       {this.status = WeatherStateStatus.loading,
       final List<Weather> currentWeather = const [],
       this.currentCity = '',
-      this.tempUnit = TempUnit.fahrenheit})
-      : _currentWeather = currentWeather;
+      this.tempUnit = TempUnit.fahrenheit,
+      final List<Weather> forecast = const []})
+      : _currentWeather = currentWeather,
+        _forecast = forecast;
 
   @override
   @JsonKey()
@@ -500,10 +515,18 @@ class _$WeatherStateImpl implements _WeatherState {
   @override
   @JsonKey()
   final TempUnit tempUnit;
+  final List<Weather> _forecast;
+  @override
+  @JsonKey()
+  List<Weather> get forecast {
+    if (_forecast is EqualUnmodifiableListView) return _forecast;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_forecast);
+  }
 
   @override
   String toString() {
-    return 'WeatherState(status: $status, currentWeather: $currentWeather, currentCity: $currentCity, tempUnit: $tempUnit)';
+    return 'WeatherState(status: $status, currentWeather: $currentWeather, currentCity: $currentCity, tempUnit: $tempUnit, forecast: $forecast)';
   }
 
   @override
@@ -517,7 +540,8 @@ class _$WeatherStateImpl implements _WeatherState {
             (identical(other.currentCity, currentCity) ||
                 other.currentCity == currentCity) &&
             (identical(other.tempUnit, tempUnit) ||
-                other.tempUnit == tempUnit));
+                other.tempUnit == tempUnit) &&
+            const DeepCollectionEquality().equals(other._forecast, _forecast));
   }
 
   @override
@@ -526,7 +550,8 @@ class _$WeatherStateImpl implements _WeatherState {
       status,
       const DeepCollectionEquality().hash(_currentWeather),
       currentCity,
-      tempUnit);
+      tempUnit,
+      const DeepCollectionEquality().hash(_forecast));
 
   @JsonKey(ignore: true)
   @override
@@ -540,7 +565,8 @@ abstract class _WeatherState implements WeatherState {
       {final WeatherStateStatus status,
       final List<Weather> currentWeather,
       final String currentCity,
-      final TempUnit tempUnit}) = _$WeatherStateImpl;
+      final TempUnit tempUnit,
+      final List<Weather> forecast}) = _$WeatherStateImpl;
 
   @override
   WeatherStateStatus get status;
@@ -550,6 +576,8 @@ abstract class _WeatherState implements WeatherState {
   String get currentCity;
   @override
   TempUnit get tempUnit;
+  @override
+  List<Weather> get forecast;
   @override
   @JsonKey(ignore: true)
   _$$WeatherStateImplCopyWith<_$WeatherStateImpl> get copyWith =>

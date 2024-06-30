@@ -1,7 +1,11 @@
 import 'package:flaconi_weather_report/app/theme/flaconi_spacing.dart';
 import 'package:flaconi_weather_report/app/theme/flaconi_typography.dart';
 import 'package:flaconi_weather_report/app/utils/extension/string_extension.dart';
+import 'package:flaconi_weather_report/app/utils/extension/utils.dart';
 import 'package:flaconi_weather_report/features/weather/application/bloc/weather_bloc.dart';
+import 'package:flaconi_weather_report/features/weather/application/presentation/widgets/forecast_item.dart';
+import 'package:flaconi_weather_report/features/weather/application/presentation/widgets/weather_details_widget.dart';
+import 'package:flaconi_weather_report/features/weather/application/presentation/widgets/weekly_forecast_widget.dart';
 import 'package:flaconi_weather_report/features/weather/domain/entity/unit.dart';
 import 'package:flutter/material.dart';
 import 'package:flaconi_weather_report/gen/assets.gen.dart';
@@ -15,11 +19,13 @@ import 'package:lottie/lottie.dart';
 class WeatherWidget extends StatefulWidget {
   final Weather weather;
   final TempUnit tempUnit;
+  final List<Weather> forecast;
 
   const WeatherWidget({
     super.key,
     required this.weather,
     required this.tempUnit,
+    required this.forecast,
   });
 
   @override
@@ -49,78 +55,73 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   @override
   Widget build(BuildContext context) {
     String tempUnit = _isImperial ? 'F' : 'C';
-    String speedUnit = _isImperial ? 'mph' : 'km/h';
-    const humidityUnit = '%';
-    const pressureUnit = 'hPa';
+
+    String day = '';
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(FlaconiSpacing.s16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                widget.weather.dt.timestampToDateTime().dayName,
+      child: RefreshIndicator(
+        onRefresh: () async {
+          context.read<WeatherBloc>().add(
+                const WeatherEvent.loadCurrentWeather(currentWeather: []),
+              );
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(left: FlaconiSpacing.s12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  widget.weather.dt.timestampToDateTime().dayName,
+                  style: context.typo.h2MediumSemiBold.white,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.weather.weather[0].description.capitalize(),
+                  style: context.typo.h2MediumSemiBold.white,
+                ),
+              ),
+              Lottie.asset(
+                Utils.fetchLottieWeatherAnimation(
+                    widget.weather.weather[0].icon),
+              ),
+              Text(
+                'Temperature: ${widget.weather.main.temp.toStringAsFixed(1)}°$tempUnit',
                 style: context.typo.h2MediumSemiBold.white,
               ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                widget.weather.weather[0].description.capitalize(),
-                style: context.typo.h2MediumSemiBold.white,
+              ElevatedButton(
+                onPressed: _toggleTemperatureUnit,
+                child: Text(
+                  'Toggle to ${_isImperial ? 'Celsius' : 'Fahrenheit'}',
+                  style: context.typo.bodyMediumRegular.black,
+                ),
               ),
-            ),
-            Lottie.asset(
-              fetchLottieWeatherAnimation(widget.weather.weather[0].icon),
-            ),
-            Text(
-              'Temperature: ${widget.weather.main.temp.toStringAsFixed(1)}°$tempUnit',
-              style: context.typo.h2MediumSemiBold.white,
-            ),
-            ElevatedButton(
-              onPressed: _toggleTemperatureUnit,
-              child: Text(
-                'Toggle to ${_isImperial ? 'Celsius' : 'Fahrenheit'}',
-                style: context.typo.bodyMediumRegular.black,
+              const SizedBox(
+                height: FlaconiSpacing.s24,
               ),
-            ),
-            const SizedBox(
-              height: FlaconiSpacing.s24,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Humidity: ${widget.weather.main.humidity}°$humidityUnit',
-                    style: context.typo.h2MediumSemiBold.white,
-                  ),
-                  Text(
-                    'Pressure: ${widget.weather.main.pressure}°$pressureUnit',
-                    style: context.typo.h2MediumSemiBold.white,
-                  ),
-                  Text(
-                    'Wind: ${widget.weather.wind.speed}°$speedUnit',
-                    style: context.typo.h2MediumSemiBold.white,
-                  ),
-                ],
+              WeatherDetailsWidget(
+                weather: widget.weather,
+                isImperial: _isImperial,
               ),
-            )
-          ],
+              const SizedBox(
+                height: FlaconiSpacing.s16,
+              ),
+              if (widget.forecast.isNotEmpty) ...[
+                WeeklyForecastWidget(
+                  itemBuilder: (context, index) {
+                    return ForecastItem(
+                      weather: widget.forecast[index],
+                      tempUnit: tempUnit,
+                    );
+                  },
+                )
+              ]
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  //Method to dynamically display images based on weather data
-  String fetchLottieWeatherAnimation(String icon) {
-    final lottieList = Assets.weather.lottie.values;
-    return lottieList
-        .where((string) => string.endsWith('$icon.json'))
-        .toList()
-        .first;
   }
 }

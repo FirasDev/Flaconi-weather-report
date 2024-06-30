@@ -35,4 +35,31 @@ class RemoteWeatherApi implements WeatherApi {
       throw HttpExceptions.fromDioError(e);
     }
   }
+
+  @override
+  Future<List<Weather>> getWeatherForecast({
+    required city,
+    required unit,
+  }) async {
+    final unitString = unit == TempUnit.fahrenheit ? 'imperial' : 'metric';
+    const currentWeatherUrl = '/forecast';
+    final params = {
+      'q': city,
+      'appid': OpenWeatherConfig.openWeatherApiKey,
+      'units': unitString,
+    };
+
+    try {
+      final Response<Map<String, dynamic>> response = await dio.get(
+        currentWeatherUrl,
+        queryParameters: params,
+      );
+      final List<Weather> weather = (response.data?['list'] as List)
+          .map((i) => Weather.fromJson(i as Map<String, dynamic>))
+          .toList();
+      return weather;
+    } on DioException catch (e) {
+      throw HttpExceptions.fromDioError(e);
+    }
+  }
 }

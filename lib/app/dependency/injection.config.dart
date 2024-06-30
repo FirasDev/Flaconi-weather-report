@@ -10,9 +10,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i4;
 import 'package:flaconi_weather_report/app/dependency/injection_module.dart'
-    as _i16;
+    as _i17;
 import 'package:flaconi_weather_report/features/weather/application/bloc/weather_bloc.dart'
-    as _i15;
+    as _i16;
 import 'package:flaconi_weather_report/features/weather/data/api/remote_weather_api.dart'
     as _i6;
 import 'package:flaconi_weather_report/features/weather/data/api/weather_api.dart'
@@ -29,6 +29,8 @@ import 'package:flaconi_weather_report/features/weather/domain/usecases/current_
     as _i14;
 import 'package:flaconi_weather_report/features/weather/domain/usecases/get_current_city_usecase.dart'
     as _i11;
+import 'package:flaconi_weather_report/features/weather/domain/usecases/weather_forecast_usecase.dart'
+    as _i15;
 import 'package:flaconi_weather_report/infrastructure/key_value_storage/key_value_storage_impl.dart'
     as _i10;
 import 'package:flaconi_weather_report/infrastructure/key_value_storage/key_value_storage_service.dart'
@@ -65,14 +67,17 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i13.WeatherRepositoryImpl(gh<_i5.WeatherApi>()));
     gh.lazySingleton<_i14.CurrentWeatherUsecase>(
         () => _i14.CurrentWeatherUsecase(gh<_i12.WeatherRepository>()));
-    gh.factory<_i15.WeatherBloc>(() => _i15.WeatherBloc(
+    gh.lazySingleton<_i15.WeatherForecastUsecase>(
+        () => _i15.WeatherForecastUsecase(gh<_i12.WeatherRepository>()));
+    gh.factory<_i16.WeatherBloc>(() => _i16.WeatherBloc(
           gh<_i12.WeatherRepository>(),
-          gh<_i14.CurrentWeatherUsecase>(),
-          gh<_i11.GetCurrentCityUsecase>(),
           gh<_i9.KeyValueStorageService>(),
+          gh<_i11.GetCurrentCityUsecase>(),
+          gh<_i14.CurrentWeatherUsecase>(),
+          gh<_i15.WeatherForecastUsecase>(),
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i16.RegisterModule {}
+class _$RegisterModule extends _i17.RegisterModule {}

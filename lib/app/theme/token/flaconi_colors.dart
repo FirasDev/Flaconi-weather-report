@@ -5,4 +5,5 @@ class FlaconiColors {
   static const error = Colors.red;
   static const black = Colors.black;
   static const white = Colors.white;
+  static const gold = Colors.yellow;
 }

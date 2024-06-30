@@ -26,4 +26,20 @@ class WeatherRepositoryImpl implements WeatherRepository {
       return const Left(NoDataFoundFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Weather>>> getWeatherForecast({
+    required city,
+    required unit,
+  }) async {
+    try {
+      final result = await weatherApi.getWeatherForecast(
+        city: city,
+        unit: unit,
+      );
+      return Right(result);
+    } on Exception catch (_) {
+      return const Left(NoDataFoundFailure());
+    }
+  }
 }

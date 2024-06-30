@@ -34,7 +34,8 @@ class WeatherHomePage extends StatelessWidget {
             buildWhen: (previous, current) =>
                 previous.currentWeather != current.currentWeather ||
                 previous.status != current.status ||
-                previous.currentCity != current.currentCity,
+                previous.currentCity != current.currentCity ||
+                previous.forecast != current.forecast,
             builder: (context, state) {
               return switch (state.status) {
                 WeatherStateStatus.loading => const LoadingIndicator(),
@@ -50,6 +51,7 @@ class WeatherHomePage extends StatelessWidget {
                 WeatherStateStatus.loaded => WeatherWidget(
                     weather: state.currentWeather[0],
                     tempUnit: state.tempUnit,
+                    forecast: state.forecast,
                   )
               };
             },

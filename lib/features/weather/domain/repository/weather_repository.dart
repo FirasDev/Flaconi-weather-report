@@ -7,4 +7,8 @@ abstract class WeatherRepository {
     required city,
     required unit,
   });
+  Future<Either<Failure, List<Weather>>> getWeatherForecast({
+    required city,
+    required unit,
+  });
 }

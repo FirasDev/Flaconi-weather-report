@@ -5,4 +5,8 @@ abstract interface class WeatherApi {
     required city,
     required unit,
   });
+  Future<List<Weather>> getWeatherForecast({
+    required city,
+    required unit,
+  });
 }
