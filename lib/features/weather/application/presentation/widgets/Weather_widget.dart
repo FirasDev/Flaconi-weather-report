@@ -26,29 +26,31 @@ class WeatherWidget extends StatefulWidget {
 }
 
 class _WeatherWidgetState extends State<WeatherWidget> {
-  bool _isFahrenheit = true;
+  bool _isImperial = true;
 
   @override
   void initState() {
-    _isFahrenheit = widget.tempUnit == TempUnit.fahrenheit;
+    _isImperial = widget.tempUnit == TempUnit.fahrenheit;
     super.initState();
   }
 
   void _toggleTemperatureUnit() {
     setState(() {
-      _isFahrenheit = !_isFahrenheit;
+      _isImperial = !_isImperial;
     });
     context.read<WeatherBloc>().add(
           WeatherEvent.updateDefaultTempUnit(
-              unit: _isFahrenheit == true
-                  ? TempUnit.fahrenheit
-                  : TempUnit.celsius),
+              unit:
+                  _isImperial == true ? TempUnit.fahrenheit : TempUnit.celsius),
         );
   }
 
   @override
   Widget build(BuildContext context) {
-    String unit = _isFahrenheit ? 'F' : 'C';
+    String tempUnit = _isImperial ? 'F' : 'C';
+    String speedUnit = _isImperial ? 'mph' : 'km/h';
+    final humidityUnit = '%';
+    final pressureUnit = 'hPa';
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(FlaconiSpacing.s16),
@@ -73,16 +75,39 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               fetchLottieWeatherAnimation(widget.weather.weather[0].icon),
             ),
             Text(
-              'Temperature: ${widget.weather.main.temp.toStringAsFixed(1)}°$unit',
+              'Temperature: ${widget.weather.main.temp.toStringAsFixed(1)}°$tempUnit',
               style: context.typo.h2MediumSemiBold.white,
             ),
             ElevatedButton(
               onPressed: _toggleTemperatureUnit,
               child: Text(
-                'Toggle to ${_isFahrenheit ? 'Celsius' : 'Fahrenheit'}',
+                'Toggle to ${_isImperial ? 'Celsius' : 'Fahrenheit'}',
                 style: context.typo.bodyMediumRegular.black,
               ),
             ),
+            const SizedBox(
+              height: FlaconiSpacing.s24,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Humidity: ${widget.weather.main.humidity}°$humidityUnit',
+                    style: context.typo.h2MediumSemiBold.white,
+                  ),
+                  Text(
+                    'Pressure: ${widget.weather.main.pressure}°$pressureUnit',
+                    style: context.typo.h2MediumSemiBold.white,
+                  ),
+                  Text(
+                    'Wind: ${widget.weather.wind.speed}°$speedUnit',
+                    style: context.typo.h2MediumSemiBold.white,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

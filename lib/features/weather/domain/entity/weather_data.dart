@@ -9,6 +9,8 @@ class WeatherData with _$WeatherData {
     required double temp,
     @JsonKey(name: 'temp_min') required double tempMin,
     @JsonKey(name: 'temp_max') required double tempMax,
+    required int pressure,
+    required int humidity,
   }) = _WeatherData;
 
   factory WeatherData.fromJson(Map<String, dynamic> json) =>

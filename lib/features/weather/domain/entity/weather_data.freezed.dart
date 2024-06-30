@@ -25,6 +25,8 @@ mixin _$WeatherData {
   double get tempMin => throw _privateConstructorUsedError;
   @JsonKey(name: 'temp_max')
   double get tempMax => throw _privateConstructorUsedError;
+  int get pressure => throw _privateConstructorUsedError;
+  int get humidity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,9 @@ abstract class $WeatherDataCopyWith<$Res> {
   $Res call(
       {double temp,
       @JsonKey(name: 'temp_min') double tempMin,
-      @JsonKey(name: 'temp_max') double tempMax});
+      @JsonKey(name: 'temp_max') double tempMax,
+      int pressure,
+      int humidity});
 }
 
 /// @nodoc
@@ -60,6 +64,8 @@ class _$WeatherDataCopyWithImpl<$Res, $Val extends WeatherData>
     Object? temp = null,
     Object? tempMin = null,
     Object? tempMax = null,
+    Object? pressure = null,
+    Object? humidity = null,
   }) {
     return _then(_value.copyWith(
       temp: null == temp
@@ -74,6 +80,14 @@ class _$WeatherDataCopyWithImpl<$Res, $Val extends WeatherData>
           ? _value.tempMax
           : tempMax // ignore: cast_nullable_to_non_nullable
               as double,
+      pressure: null == pressure
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
+              as int,
+      humidity: null == humidity
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -89,7 +103,9 @@ abstract class _$$WeatherDataImplCopyWith<$Res>
   $Res call(
       {double temp,
       @JsonKey(name: 'temp_min') double tempMin,
-      @JsonKey(name: 'temp_max') double tempMax});
+      @JsonKey(name: 'temp_max') double tempMax,
+      int pressure,
+      int humidity});
 }
 
 /// @nodoc
@@ -106,6 +122,8 @@ class __$$WeatherDataImplCopyWithImpl<$Res>
     Object? temp = null,
     Object? tempMin = null,
     Object? tempMax = null,
+    Object? pressure = null,
+    Object? humidity = null,
   }) {
     return _then(_$WeatherDataImpl(
       temp: null == temp
@@ -120,6 +138,14 @@ class __$$WeatherDataImplCopyWithImpl<$Res>
           ? _value.tempMax
           : tempMax // ignore: cast_nullable_to_non_nullable
               as double,
+      pressure: null == pressure
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
+              as int,
+      humidity: null == humidity
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -130,7 +156,9 @@ class _$WeatherDataImpl implements _WeatherData {
   _$WeatherDataImpl(
       {required this.temp,
       @JsonKey(name: 'temp_min') required this.tempMin,
-      @JsonKey(name: 'temp_max') required this.tempMax});
+      @JsonKey(name: 'temp_max') required this.tempMax,
+      required this.pressure,
+      required this.humidity});
 
   factory _$WeatherDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherDataImplFromJson(json);
@@ -143,10 +171,14 @@ class _$WeatherDataImpl implements _WeatherData {
   @override
   @JsonKey(name: 'temp_max')
   final double tempMax;
+  @override
+  final int pressure;
+  @override
+  final int humidity;
 
   @override
   String toString() {
-    return 'WeatherData(temp: $temp, tempMin: $tempMin, tempMax: $tempMax)';
+    return 'WeatherData(temp: $temp, tempMin: $tempMin, tempMax: $tempMax, pressure: $pressure, humidity: $humidity)';
   }
 
   @override
@@ -156,12 +188,17 @@ class _$WeatherDataImpl implements _WeatherData {
             other is _$WeatherDataImpl &&
             (identical(other.temp, temp) || other.temp == temp) &&
             (identical(other.tempMin, tempMin) || other.tempMin == tempMin) &&
-            (identical(other.tempMax, tempMax) || other.tempMax == tempMax));
+            (identical(other.tempMax, tempMax) || other.tempMax == tempMax) &&
+            (identical(other.pressure, pressure) ||
+                other.pressure == pressure) &&
+            (identical(other.humidity, humidity) ||
+                other.humidity == humidity));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, temp, tempMin, tempMax);
+  int get hashCode =>
+      Object.hash(runtimeType, temp, tempMin, tempMax, pressure, humidity);
 
   @JsonKey(ignore: true)
   @override
@@ -179,10 +216,11 @@ class _$WeatherDataImpl implements _WeatherData {
 
 abstract class _WeatherData implements WeatherData {
   factory _WeatherData(
-          {required final double temp,
-          @JsonKey(name: 'temp_min') required final double tempMin,
-          @JsonKey(name: 'temp_max') required final double tempMax}) =
-      _$WeatherDataImpl;
+      {required final double temp,
+      @JsonKey(name: 'temp_min') required final double tempMin,
+      @JsonKey(name: 'temp_max') required final double tempMax,
+      required final int pressure,
+      required final int humidity}) = _$WeatherDataImpl;
 
   factory _WeatherData.fromJson(Map<String, dynamic> json) =
       _$WeatherDataImpl.fromJson;
@@ -195,6 +233,10 @@ abstract class _WeatherData implements WeatherData {
   @override
   @JsonKey(name: 'temp_max')
   double get tempMax;
+  @override
+  int get pressure;
+  @override
+  int get humidity;
   @override
   @JsonKey(ignore: true)
   _$$WeatherDataImplCopyWith<_$WeatherDataImpl> get copyWith =>
