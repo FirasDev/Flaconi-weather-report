@@ -51,3 +51,8 @@ To run the api add a .env file in root with 1 parameter
 ```
 OPEN_WEATHER_MAP_ID=API_KEY_HERE
 ```
+
+## Screenshots 
+
+<img src="assets/screenshots/Screenshot_1.png" alt="Screenshot1" width="360" height="720">
+<img src="assets/screenshots/Screenshot_2.png" alt="Screenshot2" width="360" height="720">
