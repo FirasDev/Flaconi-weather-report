@@ -86,13 +86,15 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
           },
           (success) async {
             final List<Weather> filteredList = [];
+            final now = DateTime.now();
             var i = 0;
             var day = '';
             while (i < success.length) {
-              if (day != success[i].dt.timestampToDateTime().dayName) {
+              if (day != success[i].dt.timestampToDateTime().dayName &&
+                  now.dayName != success[i].dt.timestampToDateTime().dayName) {
                 day = success[i].dt.timestampToDateTime().dayName;
-                i++;
                 filteredList.add(success[i]);
+                i++;
               } else {
                 i++;
               }

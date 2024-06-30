@@ -8,7 +8,6 @@ import 'package:flaconi_weather_report/features/weather/application/presentation
 import 'package:flaconi_weather_report/features/weather/application/presentation/widgets/weekly_forecast_widget.dart';
 import 'package:flaconi_weather_report/features/weather/domain/entity/unit.dart';
 import 'package:flutter/material.dart';
-import 'package:flaconi_weather_report/gen/assets.gen.dart';
 import 'package:flaconi_weather_report/app/utils/extension/context_extension.dart';
 import 'package:flaconi_weather_report/app/utils/extension/datetime_extension.dart';
 import 'package:flaconi_weather_report/app/utils/extension/int_extension.dart';

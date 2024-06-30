@@ -41,7 +41,7 @@ class ForecastCard extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: Text(
-                day,
+                day.substring(0, 3),
                 style: context.typo.h2MediumSemiBold.white,
               ),
             ),
