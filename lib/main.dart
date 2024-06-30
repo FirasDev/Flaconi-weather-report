@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flaconi_weather_report/app/theme/weather_theme_data.dart';
 import 'package:flaconi_weather_report/app/router/router.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:injectable/injectable.dart';
 
 void main() async {
-  await configureDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies(Environment.dev);
   await dotenv.load();
   runApp(const MyApp());
 }

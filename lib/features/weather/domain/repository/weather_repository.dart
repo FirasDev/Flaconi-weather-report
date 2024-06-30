@@ -5,5 +5,6 @@ import 'package:fpdart/fpdart.dart';
 abstract class WeatherRepository {
   Future<Either<Failure, List<Weather>>> getCurrentWeatherData({
     required city,
+    required unit,
   });
 }

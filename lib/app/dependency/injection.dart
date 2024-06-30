@@ -8,4 +8,6 @@ final getIt = GetIt.instance;
   preferRelativeImports: false,
   asExtension: true,
 )
-Future<void> configureDependencies() async => getIt.init();
+Future<void> configureDependencies(String env) async => getIt.init(
+      environment: env,
+    );

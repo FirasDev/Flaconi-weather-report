@@ -12,10 +12,15 @@ class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherApi weatherApi;
 
   @override
-  Future<Either<Failure, List<Weather>>> getCurrentWeatherData(
-      {required city}) async {
+  Future<Either<Failure, List<Weather>>> getCurrentWeatherData({
+    required city,
+    required unit,
+  }) async {
     try {
-      final result = await weatherApi.getCurrentWeatherData(city: city);
+      final result = await weatherApi.getCurrentWeatherData(
+        city: city,
+        unit: unit,
+      );
       return Right(result);
     } on Exception catch (_) {
       return const Left(NoDataFoundFailure());

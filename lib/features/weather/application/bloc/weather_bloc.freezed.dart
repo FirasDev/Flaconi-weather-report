@@ -16,42 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WeatherEvent {
-  List<Weather> get currentWeather => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Weather> currentWeather) loadCurrentWeather,
+    required TResult Function(TempUnit unit) updateDefaultTempUnit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult? Function(TempUnit unit)? updateDefaultTempUnit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult Function(TempUnit unit)? updateDefaultTempUnit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadCurrentWeahter value) loadCurrentWeather,
+    required TResult Function(_UpdateDefaultTempUnit value)
+        updateDefaultTempUnit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult? Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $WeatherEventCopyWith<WeatherEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +62,6 @@ abstract class $WeatherEventCopyWith<$Res> {
   factory $WeatherEventCopyWith(
           WeatherEvent value, $Res Function(WeatherEvent) then) =
       _$WeatherEventCopyWithImpl<$Res, WeatherEvent>;
-  @useResult
-  $Res call({List<Weather> currentWeather});
 }
 
 /// @nodoc
@@ -73,28 +73,13 @@ class _$WeatherEventCopyWithImpl<$Res, $Val extends WeatherEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? currentWeather = null,
-  }) {
-    return _then(_value.copyWith(
-      currentWeather: null == currentWeather
-          ? _value.currentWeather
-          : currentWeather // ignore: cast_nullable_to_non_nullable
-              as List<Weather>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoadCurrentWeahterImplCopyWith<$Res>
-    implements $WeatherEventCopyWith<$Res> {
+abstract class _$$LoadCurrentWeahterImplCopyWith<$Res> {
   factory _$$LoadCurrentWeahterImplCopyWith(_$LoadCurrentWeahterImpl value,
           $Res Function(_$LoadCurrentWeahterImpl) then) =
       __$$LoadCurrentWeahterImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({List<Weather> currentWeather});
 }
@@ -164,6 +149,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Weather> currentWeather) loadCurrentWeather,
+    required TResult Function(TempUnit unit) updateDefaultTempUnit,
   }) {
     return loadCurrentWeather(currentWeather);
   }
@@ -172,6 +158,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult? Function(TempUnit unit)? updateDefaultTempUnit,
   }) {
     return loadCurrentWeather?.call(currentWeather);
   }
@@ -180,6 +167,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult Function(TempUnit unit)? updateDefaultTempUnit,
     required TResult orElse(),
   }) {
     if (loadCurrentWeather != null) {
@@ -192,6 +180,8 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadCurrentWeahter value) loadCurrentWeather,
+    required TResult Function(_UpdateDefaultTempUnit value)
+        updateDefaultTempUnit,
   }) {
     return loadCurrentWeather(this);
   }
@@ -200,6 +190,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult? Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
   }) {
     return loadCurrentWeather?.call(this);
   }
@@ -208,6 +199,7 @@ class _$LoadCurrentWeahterImpl implements _LoadCurrentWeahter {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
     required TResult orElse(),
   }) {
     if (loadCurrentWeather != null) {
@@ -221,12 +213,147 @@ abstract class _LoadCurrentWeahter implements WeatherEvent {
   const factory _LoadCurrentWeahter(
       {required final List<Weather> currentWeather}) = _$LoadCurrentWeahterImpl;
 
-  @override
   List<Weather> get currentWeather;
-  @override
   @JsonKey(ignore: true)
   _$$LoadCurrentWeahterImplCopyWith<_$LoadCurrentWeahterImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateDefaultTempUnitImplCopyWith<$Res> {
+  factory _$$UpdateDefaultTempUnitImplCopyWith(
+          _$UpdateDefaultTempUnitImpl value,
+          $Res Function(_$UpdateDefaultTempUnitImpl) then) =
+      __$$UpdateDefaultTempUnitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TempUnit unit});
+}
+
+/// @nodoc
+class __$$UpdateDefaultTempUnitImplCopyWithImpl<$Res>
+    extends _$WeatherEventCopyWithImpl<$Res, _$UpdateDefaultTempUnitImpl>
+    implements _$$UpdateDefaultTempUnitImplCopyWith<$Res> {
+  __$$UpdateDefaultTempUnitImplCopyWithImpl(_$UpdateDefaultTempUnitImpl _value,
+      $Res Function(_$UpdateDefaultTempUnitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? unit = null,
+  }) {
+    return _then(_$UpdateDefaultTempUnitImpl(
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as TempUnit,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateDefaultTempUnitImpl implements _UpdateDefaultTempUnit {
+  const _$UpdateDefaultTempUnitImpl({required this.unit});
+
+  @override
+  final TempUnit unit;
+
+  @override
+  String toString() {
+    return 'WeatherEvent.updateDefaultTempUnit(unit: $unit)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateDefaultTempUnitImpl &&
+            (identical(other.unit, unit) || other.unit == unit));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, unit);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateDefaultTempUnitImplCopyWith<_$UpdateDefaultTempUnitImpl>
+      get copyWith => __$$UpdateDefaultTempUnitImplCopyWithImpl<
+          _$UpdateDefaultTempUnitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Weather> currentWeather) loadCurrentWeather,
+    required TResult Function(TempUnit unit) updateDefaultTempUnit,
+  }) {
+    return updateDefaultTempUnit(unit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult? Function(TempUnit unit)? updateDefaultTempUnit,
+  }) {
+    return updateDefaultTempUnit?.call(unit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Weather> currentWeather)? loadCurrentWeather,
+    TResult Function(TempUnit unit)? updateDefaultTempUnit,
+    required TResult orElse(),
+  }) {
+    if (updateDefaultTempUnit != null) {
+      return updateDefaultTempUnit(unit);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadCurrentWeahter value) loadCurrentWeather,
+    required TResult Function(_UpdateDefaultTempUnit value)
+        updateDefaultTempUnit,
+  }) {
+    return updateDefaultTempUnit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult? Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+  }) {
+    return updateDefaultTempUnit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadCurrentWeahter value)? loadCurrentWeather,
+    TResult Function(_UpdateDefaultTempUnit value)? updateDefaultTempUnit,
+    required TResult orElse(),
+  }) {
+    if (updateDefaultTempUnit != null) {
+      return updateDefaultTempUnit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateDefaultTempUnit implements WeatherEvent {
+  const factory _UpdateDefaultTempUnit({required final TempUnit unit}) =
+      _$UpdateDefaultTempUnitImpl;
+
+  TempUnit get unit;
+  @JsonKey(ignore: true)
+  _$$UpdateDefaultTempUnitImplCopyWith<_$UpdateDefaultTempUnitImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -234,6 +361,7 @@ mixin _$WeatherState {
   WeatherStateStatus get status => throw _privateConstructorUsedError;
   List<Weather> get currentWeather => throw _privateConstructorUsedError;
   String get currentCity => throw _privateConstructorUsedError;
+  TempUnit get tempUnit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherStateCopyWith<WeatherState> get copyWith =>
@@ -249,7 +377,8 @@ abstract class $WeatherStateCopyWith<$Res> {
   $Res call(
       {WeatherStateStatus status,
       List<Weather> currentWeather,
-      String currentCity});
+      String currentCity,
+      TempUnit tempUnit});
 }
 
 /// @nodoc
@@ -268,6 +397,7 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
     Object? status = null,
     Object? currentWeather = null,
     Object? currentCity = null,
+    Object? tempUnit = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -282,6 +412,10 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
           ? _value.currentCity
           : currentCity // ignore: cast_nullable_to_non_nullable
               as String,
+      tempUnit: null == tempUnit
+          ? _value.tempUnit
+          : tempUnit // ignore: cast_nullable_to_non_nullable
+              as TempUnit,
     ) as $Val);
   }
 }
@@ -297,7 +431,8 @@ abstract class _$$WeatherStateImplCopyWith<$Res>
   $Res call(
       {WeatherStateStatus status,
       List<Weather> currentWeather,
-      String currentCity});
+      String currentCity,
+      TempUnit tempUnit});
 }
 
 /// @nodoc
@@ -314,6 +449,7 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? currentWeather = null,
     Object? currentCity = null,
+    Object? tempUnit = null,
   }) {
     return _then(_$WeatherStateImpl(
       status: null == status
@@ -328,6 +464,10 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
           ? _value.currentCity
           : currentCity // ignore: cast_nullable_to_non_nullable
               as String,
+      tempUnit: null == tempUnit
+          ? _value.tempUnit
+          : tempUnit // ignore: cast_nullable_to_non_nullable
+              as TempUnit,
     ));
   }
 }
@@ -338,7 +478,8 @@ class _$WeatherStateImpl implements _WeatherState {
   const _$WeatherStateImpl(
       {this.status = WeatherStateStatus.loading,
       final List<Weather> currentWeather = const [],
-      this.currentCity = ''})
+      this.currentCity = '',
+      this.tempUnit = TempUnit.fahrenheit})
       : _currentWeather = currentWeather;
 
   @override
@@ -356,10 +497,13 @@ class _$WeatherStateImpl implements _WeatherState {
   @override
   @JsonKey()
   final String currentCity;
+  @override
+  @JsonKey()
+  final TempUnit tempUnit;
 
   @override
   String toString() {
-    return 'WeatherState(status: $status, currentWeather: $currentWeather, currentCity: $currentCity)';
+    return 'WeatherState(status: $status, currentWeather: $currentWeather, currentCity: $currentCity, tempUnit: $tempUnit)';
   }
 
   @override
@@ -371,12 +515,18 @@ class _$WeatherStateImpl implements _WeatherState {
             const DeepCollectionEquality()
                 .equals(other._currentWeather, _currentWeather) &&
             (identical(other.currentCity, currentCity) ||
-                other.currentCity == currentCity));
+                other.currentCity == currentCity) &&
+            (identical(other.tempUnit, tempUnit) ||
+                other.tempUnit == tempUnit));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_currentWeather), currentCity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_currentWeather),
+      currentCity,
+      tempUnit);
 
   @JsonKey(ignore: true)
   @override
@@ -389,7 +539,8 @@ abstract class _WeatherState implements WeatherState {
   const factory _WeatherState(
       {final WeatherStateStatus status,
       final List<Weather> currentWeather,
-      final String currentCity}) = _$WeatherStateImpl;
+      final String currentCity,
+      final TempUnit tempUnit}) = _$WeatherStateImpl;
 
   @override
   WeatherStateStatus get status;
@@ -397,6 +548,8 @@ abstract class _WeatherState implements WeatherState {
   List<Weather> get currentWeather;
   @override
   String get currentCity;
+  @override
+  TempUnit get tempUnit;
   @override
   @JsonKey(ignore: true)
   _$$WeatherStateImplCopyWith<_$WeatherStateImpl> get copyWith =>

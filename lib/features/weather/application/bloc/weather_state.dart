@@ -12,5 +12,6 @@ abstract class WeatherState with _$WeatherState {
     @Default(WeatherStateStatus.loading) WeatherStateStatus status,
     @Default([]) List<Weather> currentWeather,
     @Default('') String currentCity,
+    @Default(TempUnit.fahrenheit) TempUnit tempUnit,
   }) = _WeatherState;
 }

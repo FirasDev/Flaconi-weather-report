@@ -47,8 +47,10 @@ class WeatherHomePage extends StatelessWidget {
                           );
                     },
                   ),
-                WeatherStateStatus.loaded =>
-                  WeatherWidget(weather: state.currentWeather[0])
+                WeatherStateStatus.loaded => WeatherWidget(
+                    weather: state.currentWeather[0],
+                    tempUnit: state.tempUnit,
+                  )
               };
             },
           ),
