@@ -26,6 +26,7 @@ class WeatherHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: WeatherThemeData.lightThemeData.primaryColor,
         body: BlocProvider(
           create: (context) => getIt<WeatherBloc>()

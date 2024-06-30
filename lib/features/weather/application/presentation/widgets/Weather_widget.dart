@@ -63,68 +63,75 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                 const WeatherEvent.loadCurrentWeather(currentWeather: []),
               );
         },
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: SizedBox.fromSize(
-            size: MediaQuery.of(context).size,
-            child: Padding(
-              padding: const EdgeInsets.only(left: FlaconiSpacing.s12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      widget.weather.dt.timestampToDateTime().dayName,
-                      style: context.typo.h2MediumSemiBold.white,
-                    ),
+        child: OrientationBuilder(
+          builder: (context, orientation) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: SizedBox(
+                height: orientation == Orientation.portrait
+                    ? MediaQuery.of(context).size.height
+                    : MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: FlaconiSpacing.s12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          widget.weather.dt.timestampToDateTime().dayName,
+                          style: context.typo.h2MediumSemiBold.white,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          widget.weather.weather[0].description.capitalize(),
+                          style: context.typo.h2MediumSemiBold.white,
+                        ),
+                      ),
+                      Lottie.asset(
+                        Utils.fetchLottieWeatherAnimation(
+                            widget.weather.weather[0].icon),
+                      ),
+                      Text(
+                        'Temperature: ${widget.weather.main.temp.toStringAsFixed(1)}°$tempUnit',
+                        style: context.typo.h2MediumSemiBold.white,
+                      ),
+                      ElevatedButton(
+                        onPressed: _toggleTemperatureUnit,
+                        child: Text(
+                          'Toggle to ${_isImperial ? 'Celsius' : 'Fahrenheit'}',
+                          style: context.typo.bodyMediumRegular.black,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: FlaconiSpacing.s24,
+                      ),
+                      WeatherDetailsWidget(
+                        weather: widget.weather,
+                        isImperial: _isImperial,
+                      ),
+                      const SizedBox(
+                        height: FlaconiSpacing.s16,
+                      ),
+                      if (widget.forecast.isNotEmpty) ...[
+                        WeeklyForecastWidget(
+                          itemBuilder: (context, index) {
+                            return ForecastItem(
+                              weather: widget.forecast[index],
+                              tempUnit: tempUnit,
+                            );
+                          },
+                        )
+                      ]
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      widget.weather.weather[0].description.capitalize(),
-                      style: context.typo.h2MediumSemiBold.white,
-                    ),
-                  ),
-                  Lottie.asset(
-                    Utils.fetchLottieWeatherAnimation(
-                        widget.weather.weather[0].icon),
-                  ),
-                  Text(
-                    'Temperature: ${widget.weather.main.temp.toStringAsFixed(1)}°$tempUnit',
-                    style: context.typo.h2MediumSemiBold.white,
-                  ),
-                  ElevatedButton(
-                    onPressed: _toggleTemperatureUnit,
-                    child: Text(
-                      'Toggle to ${_isImperial ? 'Celsius' : 'Fahrenheit'}',
-                      style: context.typo.bodyMediumRegular.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: FlaconiSpacing.s24,
-                  ),
-                  WeatherDetailsWidget(
-                    weather: widget.weather,
-                    isImperial: _isImperial,
-                  ),
-                  const SizedBox(
-                    height: FlaconiSpacing.s16,
-                  ),
-                  if (widget.forecast.isNotEmpty) ...[
-                    WeeklyForecastWidget(
-                      itemBuilder: (context, index) {
-                        return ForecastItem(
-                          weather: widget.forecast[index],
-                          tempUnit: tempUnit,
-                        );
-                      },
-                    )
-                  ]
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
