@@ -1,6 +1,6 @@
-# flaconi_weather_report
+# weather_report
 
-A Flaconi coding assignment
+A coding assignment
 
 ## Intro
 
